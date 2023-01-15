@@ -1,1 +1,5 @@
+node_modules
+
+# npm/pnpm lock file 
 pnpm-lock.yaml
+package-lock.json
