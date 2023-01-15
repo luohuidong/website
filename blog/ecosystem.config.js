@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: "Blog",
+      name: "3000-blog",
       exec_mode: "cluster",
       instances: "max",
       script: "./.output/server/index.mjs",
