@@ -1,0 +1,94 @@
+---
+title: Git Submodules
+tags:
+  - git
+date: 2022-12-13 21:52:39
+---
+
+
+## 在现有项目中添加 submodules
+
+当需要将别的 Git 仓库作为 submodules 进行添加的时候，可以执行下面的命令：
+
+```bash
+git submodule add https://github.com/chaconinc/DbConnector
+```
+
+上面的命令，submobules 默认的路径为 `DbConnector` 。如果添加的时候想要别的路径，可以在命令后面添加。
+
+需要注意的是，项目如果需要跟其他人合作，需要注意 submodule 的 url 其他人是否有权限访问。
+
+## 克隆包含 submodules 的项目
+
+通过 `git clone` 克隆带有 submodules 的项目，在默认情况下，对应 submodule 的目录是空的，为了获取 submodule 中的文件，需要执行下面的命令：
+
+```bash
+git submodule init
+git submodule update
+```
+
+`git submodule init`用于初始化本地配置文件，而 `git submodule update`用于获取 submodule 的数据及拉取对应的文件。
+
+如果觉得上面的命令麻烦的话，可以在 clone 的时候添加 `--recurse-submodules` 命令：
+
+```bash
+git clone --recurse-submodules https://github.com/chaconinc/MainProject
+```
+
+上面的命令，即便 submodules 中还有 submodules，也会一同获取所有文件。
+
+如果已经克隆了项目，但是忘记添加 `--recurse-submodules` 命令，则可以执行：
+
+```bash
+git submodule update --init --recursive
+```
+
+## 更新 submodule
+
+需要更新 submodule 的时候，可以进入到 submodule 的目录，并执行下面的命令进行更新：
+
+```bash
+git fetch
+get merge origin/master
+```
+
+当执行完上面的命令的时候，可以通过 `git diff --submodule`来查看 submodule 的更新内容。
+
+如果觉得执行上面两条命令比较繁琐，则可以执行下面的命令进行更新，同样是会更新所有 submodule 的内容：
+
+```bash
+git submodule update --remote
+```
+
+### 多人协作的场景
+
+如果在多人协作的场景下，其他人通过 `git pull` 拉取代码，其实是无法更新 submodule 中的内容的。在这种情况下，可以在执行 `git pull` 后，执行 `git submodule update`：
+
+```bash
+git submodule update --init --recursive
+```
+
+之所以要加 `--init`，是因为在 pull 代码的时候，可能添加了新的 submodule。
+
+更简便的方法是在 `git pull` 的时候添加 `--recurse-submodules` 参数：
+
+```bash
+git pull --recurse-submodules
+```
+
+当 submodule 对应的 url 更改之后，使用 `git pull --recurse-submodules` 或者 `git submodule update` 会报错。这个时候，可执行 `git submodule sync`：
+
+```bash
+# copy the new URL to your local config
+git submodule sync --recursive
+# update the submodule from the new URL
+git submodule update --init --recursive
+```
+
+### 配置 submodule 默认分支
+
+默认情况下 `git submodule update --remote` 更新的是远端仓库默认的分支，如果想配置拉取指定分支的数据，可以执行下面的命令：
+
+```bash
+git config -f .gitmodules submodule.DbConnector.branch stable
+```
