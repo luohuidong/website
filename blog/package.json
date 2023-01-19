@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
-    "marked": "^4.2.12"
+    "marked": "^4.2.12",
+    "shiki": "^0.12.1"
   }
 }
