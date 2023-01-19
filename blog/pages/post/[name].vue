@@ -6,41 +6,86 @@ const { title, date, content } = result;
 
 <template>
   <div class="mx-auto w-3/4">
-    <h1 class="mt-4 mb-10 text-center text-4xl">{{ title }}</h1>
+    <h1
+      class="mt-4 mb-10 text-center text-4xl font-bold"
+      :style="{ color: 'rgba(60, 60, 67, 0.92)' }"
+    >
+      {{ title }}
+    </h1>
     <time :datetime="date"></time>
 
-    <div class="postArea">
+    <div :class="$style.postArea">
       <div v-html="content"></div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
 .postArea {
-  :deep(h2) {
-    margin-bottom: 30px;
-    font-size: 20px;
+  * {
+    color: rgba(60, 60, 67, 0.92);
+  }
+
+  h2 {
+    margin: 60px 0 30px 0;
+    font-size: 24px;
+    line-height: 32px;
     font-weight: bold;
   }
 
-  :deep(h3) {
-    margin-bottom: 30px;
+  h3 {
+    margin: 40px 0 30px 0;
     font-size: 20px;
+    line-height: 28px;
     font-weight: bold;
   }
 
-  :deep(p) {
+  h4 {
+    margin: 30px 0;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  p {
     margin-bottom: 30px;
   }
 
-  :deep(pre.shiki.nord) {
-    display: block;
-    padding: 20px;
-    border-radius: 5px;
+  p > code {
+    padding: 3px 6px;
+    background: #f6f6f7;
+    font-size: 14px;
+    color: #476582;
+    border-radius: 4px;
   }
 
-  :deep(a) {
-    color: blue;
+  > div > pre {
+    margin-bottom: 30px;
+
+    > code {
+      display: flex;
+
+      pre[class*="shiki"] {
+        flex: 1;
+        padding: 20px;
+        border-radius: 5px;
+      }
+    }
+  }
+
+  a {
+    color: #10b981;
+    font-weight: 500;
+  }
+
+  ul {
+    list-style-type: disc;
+    padding-left: 26px;
+    margin-bottom: 30px;
+
+    > li {
+      margin-bottom: 8px;
+      color: rgba(60, 60, 67, 0.92);
+    }
   }
 }
 </style>
