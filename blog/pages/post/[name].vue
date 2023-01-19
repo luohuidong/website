@@ -6,13 +6,13 @@ const { title, date, content } = result;
 
 <template>
   <div class="mx-auto w-3/4">
-    <h1
-      class="mt-4 mb-10 text-center text-4xl font-bold"
-      :style="{ color: 'rgba(60, 60, 67, 0.92)' }"
-    >
+    <h1 class="mt-4 mb-6 text-center text-4xl font-bold text-neutral-700">
       {{ title }}
     </h1>
-    <time :datetime="date"></time>
+
+    <div class="text-center mb-10">
+      <time :datetime="date" class="text-neutral-700">{{ date }}</time>
+    </div>
 
     <div :class="$style.postArea">
       <div v-html="content"></div>
