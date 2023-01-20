@@ -7,7 +7,7 @@
   "scripts": {
     "dev:build": "tsc --project tsconfig.development.json",
     "dev:serve": "nodemon --watch dist dist/index.js",
-    "prd:build": "tsc",
+    "build": "tsc",
     "commit": "cz",
     "lint": "eslint",
     "test": "jest"
