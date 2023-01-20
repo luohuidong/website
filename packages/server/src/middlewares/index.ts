@@ -1,5 +1,6 @@
 import type { App } from "./types.js";
 import bodyParser from "koa-bodyparser";
+import cors from "@koa/cors";
 
 import logger from "./logger.js";
 import jsonError from "./jsonError.js";
@@ -9,6 +10,7 @@ import jsonError from "./jsonError.js";
  * @param app
  */
 export default function middleware(app: App): void {
+  app.use(cors());
   app.use(bodyParser());
   logger(app);
   jsonError(app);
