@@ -1,5 +1,12 @@
 <script setup lang="ts">
-const { list } = await $fetch("/api/posts");
+const { list } = await $fetch<{
+  list: {
+    filename: string;
+    title: string;
+    date: string;
+    tags: string[] | null;
+  }[];
+}>("http://localhost:8000/posts");
 </script>
 
 <template>

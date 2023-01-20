@@ -1,6 +1,11 @@
 <script setup lang="ts">
 const params = useRoute().params;
-const result = await $fetch(`/api/post/${params.name}`);
+const result = await $fetch<{
+  title: string;
+  date: string;
+  content: string;
+}>(`http://localhost:8000/post/${params.name}`);
+
 const { title, date, content } = result;
 </script>
 
@@ -10,7 +15,7 @@ const { title, date, content } = result;
       {{ title }}
     </h1>
 
-    <div class="text-center mb-10">
+    <div class="mb-10 text-center">
       <time :datetime="date" class="text-neutral-700">{{ date }}</time>
     </div>
 
