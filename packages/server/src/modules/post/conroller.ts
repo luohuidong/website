@@ -7,18 +7,18 @@ import url from "node:url";
 import type { ParameterizedContext } from "koa";
 
 export class PostController {
-  private getPostsPath = ()  => {
-    const postsPath = new URL("../../../../source/posts", import.meta.url);
+  private getPostsPath = () => {
+    const postsPath = new URL("../../../../../source/posts", import.meta.url);
     const result = url.fileURLToPath(postsPath);
     return result;
-  }
+  };
 
-  private formatDate = (date: string)  => {
+  private formatDate = (date: string) => {
     const tmp = new Date(date);
     return `${tmp.getFullYear()}-${tmp.getMonth() + 1}-${tmp.getDate()}`;
-  }
+  };
 
-  getPosts = async (ctx: ParameterizedContext)  => {
+  getPosts = async (ctx: ParameterizedContext) => {
     interface PostListItem {
       filename: string;
       title: string;
@@ -48,7 +48,7 @@ export class PostController {
     ctx.body = {
       list: postListData,
     };
-  }
+  };
 
   getPost = async (ctx: ParameterizedContext) => {
     const postsPath = this.getPostsPath();
@@ -77,5 +77,5 @@ export class PostController {
       date: this.formatDate(data.date),
       content,
     };
-  }
+  };
 }
