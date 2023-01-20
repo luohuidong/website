@@ -4,7 +4,7 @@ const result = await $fetch<{
   title: string;
   date: string;
   content: string;
-}>(`http://localhost:8000/post/${params.name}`);
+}>(`https://api.luohuidong.cn/blog/post/${params.name}`);
 
 const { title, date, content } = result;
 </script>

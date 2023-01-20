@@ -6,7 +6,7 @@ const { list } = await $fetch<{
     date: string;
     tags: string[] | null;
   }[];
-}>("http://localhost:8000/posts");
+}>("https://api.luohuidong.cn/blog/posts");
 </script>
 
 <template>
