@@ -55,7 +55,7 @@ const { title, date, content } = result;
     margin-bottom: 30px;
   }
 
-  p > code {
+  p > code, li > code {
     padding: 3px 6px;
     background: #f6f6f7;
     font-size: 14px;
