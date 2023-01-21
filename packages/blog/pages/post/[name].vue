@@ -55,7 +55,8 @@ const { title, date, content } = result;
     margin-bottom: 30px;
   }
 
-  p > code, li > code {
+  p > code,
+  li > code {
     padding: 3px 6px;
     background: #f6f6f7;
     font-size: 14px;
@@ -82,8 +83,8 @@ const { title, date, content } = result;
     font-weight: 500;
   }
 
-  ul {
-    list-style-type: disc;
+  ul,
+  ol {
     padding-left: 26px;
     margin-bottom: 30px;
 
@@ -91,6 +92,14 @@ const { title, date, content } = result;
       margin-bottom: 8px;
       color: rgba(60, 60, 67, 0.92);
     }
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
   }
 }
 </style>
