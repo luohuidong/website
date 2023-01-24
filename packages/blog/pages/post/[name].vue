@@ -1,10 +1,13 @@
 <script setup lang="ts">
+const {
+  public: { blogServer },
+} = useRuntimeConfig();
 const params = useRoute().params;
 const result = await $fetch<{
   title: string;
   date: string;
   content: string;
-}>(`https://api.luohuidong.cn/blog/post/${params.name}`);
+}>(`${blogServer}/post/${params.name}`);
 
 const { title, date, content } = result;
 </script>

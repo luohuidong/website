@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const {
+  public: { blogServer },
+} = useRuntimeConfig();
 const { list } = await $fetch<{
   list: {
     filename: string;
@@ -6,7 +9,7 @@ const { list } = await $fetch<{
     date: string;
     tags: string[] | null;
   }[];
-}>("https://api.luohuidong.cn/blog/posts");
+}>(`${blogServer}/posts`);
 </script>
 
 <template>

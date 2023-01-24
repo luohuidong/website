@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    public: {
+      blogServer: process.env.NUXT_BLOG_SERVER || "http://localhost:3000",
+    },
+  },
+  css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
       tailwindcss: {},
