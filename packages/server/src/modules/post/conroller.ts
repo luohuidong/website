@@ -6,6 +6,8 @@ import shiki from "shiki";
 import url from "node:url";
 import type { ParameterizedContext } from "koa";
 
+import markedKatexExtension from "./markedKatexExtension.js";
+
 export class PostController {
   private getPostsPath = () => {
     const postsPath = new URL("../../../../../source/posts", import.meta.url);
@@ -70,6 +72,7 @@ export class PostController {
         return highlighter.codeToHtml(code, { lang });
       },
     });
+    marked.use(markedKatexExtension());
     content = marked.parse(content);
 
     ctx.body = {
