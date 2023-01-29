@@ -10,7 +10,7 @@ import markedKatexExtension from "./markedKatexExtension.js";
 
 export class PostController {
   private getPostsPath = () => {
-    const postsPath = new URL("../../../../../source/posts", import.meta.url);
+    const postsPath = new URL("../../../../source/posts", import.meta.url);
     const result = url.fileURLToPath(postsPath);
     return result;
   };
