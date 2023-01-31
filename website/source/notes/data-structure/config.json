@@ -3,7 +3,7 @@
   "sidebar": [
     {
       "text": "链表",
-      "items": [{ "text": "单链表", "link": "./2023-01-30.md" }]
+      "items": [{ "text": "单链表", "link": "./linked-list/2023-01-30.md" }]
     }
   ]
 }

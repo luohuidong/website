@@ -8,6 +8,6 @@ const controller = new NoteController();
 
 router.get("/", controller.getNotes);
 router.get("/:notedirname", controller.getNotePosts);
-router.get("/:notedirname/:postlink", controller.getPost);
+router.get("/:notedirname/:postlink*", controller.getPost);
 
 export default router;
