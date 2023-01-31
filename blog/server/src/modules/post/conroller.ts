@@ -1,12 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
-import { marked } from "marked";
 import matter from "gray-matter";
-import shiki from "shiki";
 import url from "node:url";
 import type { ParameterizedContext } from "koa";
 
-import markedKatexExtension from "./markedKatexExtension.js";
+import { parseMarkdown } from "../../utils/index.js";
 
 export class PostController {
   private getPostsPath = () => {
@@ -54,30 +52,17 @@ export class PostController {
 
   getPost = async (ctx: ParameterizedContext) => {
     const postsPath = this.getPostsPath();
-    const body = ctx.params as {
+    const params = ctx.params as {
       postfilename: string;
     };
 
-    const fileData = fs.readFileSync(path.join(postsPath, body.postfilename), {
-      encoding: "utf-8",
-    });
-
-    const highlighter = await shiki.getHighlighter({
-      theme: "nord",
-    });
-
-    let { data, content } = matter(fileData);
-    marked.setOptions({
-      highlight: function (code, lang) {
-        return highlighter.codeToHtml(code, { lang });
-      },
-    });
-    marked.use(markedKatexExtension());
-    content = marked.parse(content);
+    const { meta, content } = await parseMarkdown<{ date: string; tags: string[]; title: string }>(
+      path.join(postsPath, params.postfilename)
+    );
 
     ctx.body = {
-      title: data.title as string,
-      date: this.formatDate(data.date),
+      title: meta.title as string,
+      date: this.formatDate(meta.date),
       content,
     };
   };
