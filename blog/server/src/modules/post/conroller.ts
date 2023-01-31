@@ -4,18 +4,13 @@ import matter from "gray-matter";
 import url from "node:url";
 import type { ParameterizedContext } from "koa";
 
-import { parseMarkdown } from "../../utils/index.js";
+import { parseMarkdown, formatDate } from "../../utils/index.js";
 
 export class PostController {
   private getPostsPath = () => {
     const postsPath = new URL("../../../../source/posts", import.meta.url);
     const result = url.fileURLToPath(postsPath);
     return result;
-  };
-
-  private formatDate = (date: string) => {
-    const tmp = new Date(date);
-    return `${tmp.getFullYear()}-${tmp.getMonth() + 1}-${tmp.getDate()}`;
   };
 
   getPosts = async (ctx: ParameterizedContext) => {
@@ -41,7 +36,7 @@ export class PostController {
       postListData.push({
         ...data,
         filename: postFileName,
-        date: this.formatDate(data.date),
+        date: formatDate(data.date),
       } as PostListItem);
     }
 
@@ -62,7 +57,7 @@ export class PostController {
 
     ctx.body = {
       title: meta.title as string,
-      date: this.formatDate(meta.date),
+      date: formatDate(meta.date),
       content,
     };
   };
