@@ -13,7 +13,7 @@ const { title, date, content } = result;
 </script>
 
 <template>
-  <div class="mx-auto w-3/4">
+  <div class="mx-auto max-w-3xl">
     <Post :title="title" :date="date" :content="content"></Post>
   </div>
 </template>

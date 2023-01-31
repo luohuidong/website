@@ -6,7 +6,7 @@ const navs = [
 </script>
 
 <template>
-  <div class="mx-auto flex min-h-screen w-3/4 flex-col">
+  <div class="mx-auto flex min-h-screen w-10/12 flex-col">
     <header class="mx-auto flex h-24 w-3/4 items-center justify-end gap-3">
       <NuxtLink
         v-for="item of navs"

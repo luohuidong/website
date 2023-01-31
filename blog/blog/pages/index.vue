@@ -13,7 +13,7 @@ const { list } = await $fetch<{
 </script>
 
 <template>
-  <div class="mx-auto w-1/2 pt-4">
+  <div class="mx-auto max-w-3xl pt-4">
     <ul class="mt-10">
       <li v-for="item in list" :key="item.date" class="mb-2">
         <NuxtLink :to="`/post/${item.filename}`">
