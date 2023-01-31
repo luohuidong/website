@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const navs = [
   { to: "/", text: "首页" },
+  { to: "/notes", text: "笔记" },
   { to: "https://github.com/luohuidong", text: "GitHub" },
 ];
 </script>
