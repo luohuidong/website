@@ -3,6 +3,8 @@ const props = defineProps<{
   notedirname: string;
 }>();
 
+const route = useRoute();
+
 const {
   public: { blogServer },
 } = useRuntimeConfig();
@@ -50,6 +52,7 @@ const result = await $fetch<{
             <NuxtLink
               :to="`/notes/${notedirname}/${encodeURIComponent(subItem.link)}`"
               class="hover:text-[#10b981]"
+              :class="{ 'text-[#10b981]': route.params.link === subItem.link }"
             >
               {{ subItem.text }}
             </NuxtLink>
