@@ -1,10 +1,12 @@
 import Router from "@koa/router";
 import { PostController } from "./conroller.js";
 
-const router = new Router();
+const router = new Router({
+  prefix: "/posts",
+});
 const controller = new PostController();
 
-router.get("/post/:postfilename", controller.getPost);
-router.get("/posts", controller.getPosts);
+router.get("/", controller.getPosts);
+router.get("/:postfilename", controller.getPost);
 
 export default router;
