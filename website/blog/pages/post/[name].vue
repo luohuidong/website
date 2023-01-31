@@ -7,7 +7,7 @@ const result = await $fetch<{
   title: string;
   date: string;
   content: string;
-}>(`${blogServer}/post/${params.name}`);
+}>(`${blogServer}/posts/${params.name}`);
 
 const { title, date, content } = result;
 </script>
