@@ -1,5 +1,5 @@
 git pull
-sh project-install-deps.sh
-sh project-build.sh
+pnpm install
+pnpm -r build 
 pm2 stop all
 pm2 start
