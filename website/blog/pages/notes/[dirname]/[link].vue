@@ -19,20 +19,19 @@ const result = await $fetch<{
 </script>
 
 <template>
-  <div class="flex">
-    <div class="flex-1">
+  <div class="flex justify-center">
+    <div class="w-[300px]">
       <NotePostList :notedirname="notedirname"></NotePostList>
     </div>
 
-    <div class="max-w-4xl px-5">
+    <div class="w-[900px] px-5">
       <Post
-        class="flex-1"
         :title="result.data.meta.title"
         :date="result.data.meta.date"
         :content="result.data.content"
       ></Post>
     </div>
 
-    <div class="flex-1"></div>
+    <div class="w-[300px]"></div>
   </div>
 </template>

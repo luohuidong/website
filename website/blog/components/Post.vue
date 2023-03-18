@@ -98,5 +98,23 @@ defineProps<{
   ol {
     list-style: decimal;
   }
+
+  table {
+    width: 100%;
+    margin-bottom: 30px;
+
+    td,
+    th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #f2f2f2;
+    }
+  }
 }
 </style>
