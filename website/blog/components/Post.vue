@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <div class="w-full">
-    <h1 class="mt-4 mb-6 text-center text-4xl font-bold text-neutral-700">
+    <h1 class="mb-6 mt-4 text-center text-4xl font-bold text-neutral-700">
       {{ title }}
     </h1>
 

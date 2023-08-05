@@ -1,4 +1,4 @@
-export interface NoteConfig {
+export interface NotebookConfig {
   title: string;
   sidebar: {
     text: string;

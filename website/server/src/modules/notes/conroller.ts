@@ -3,63 +3,65 @@ import path from "node:path";
 import url from "node:url";
 import type { ParameterizedContext } from "koa";
 
-import type { NoteConfig } from "./types";
+import type { NotebookConfig } from "./types";
 import { parseMarkdown, formatDate } from "../../utils/index.js";
 
 export class NoteController {
-  private getNotesPath = () => {
-    const postsPath = new URL("../../../../source/notes", import.meta.url);
-    const result = url.fileURLToPath(postsPath);
+  private getNotebooksPath = () => {
+    const notebooksPath = new URL("../../../../source/notebooks", import.meta.url);
+    const result = url.fileURLToPath(notebooksPath);
     return result;
   };
 
-  /** get All Notes */
-  getNotes = async (ctx: ParameterizedContext) => {
-    interface NotesListItem {
-      noteDirName: string;
-      noteTitle: string;
+  /** get All Notebooks */
+  getNotebooks = async (ctx: ParameterizedContext) => {
+    interface NotebooksItem {
+      notebookDirName: string;
+      notebookTitle: string;
+      notebookConfig: NotebookConfig;
     }
-    const notesPath = this.getNotesPath();
-    const notesListData: NotesListItem[] = [];
-    const notes = fs.readdirSync(notesPath);
-    const total = notes.length >= 10 ? 10 : notes.length;
+    const notebooksPath = this.getNotebooksPath();
+    const notebooksListData: NotebooksItem[] = [];
+    const notebooks = fs.readdirSync(notebooksPath);
+    const total = notebooks.length >= 10 ? 10 : notebooks.length;
 
     for (let i = 0; i < total; i++) {
-      const notesDirPath = notesPath;
-      const noteDirName = notes[i];
-      const noteConfigFilePath = path.join(notesDirPath, noteDirName, "config.json");
-      const noteConfig: NoteConfig = JSON.parse(
-        fs.readFileSync(noteConfigFilePath, {
+      const notebookDirName = notebooks[i];
+      const notebookConfigFilePath = path.join(notebooksPath, notebookDirName, "config.json");
+      const notebookConfig: NotebookConfig = JSON.parse(
+        fs.readFileSync(notebookConfigFilePath, {
           encoding: "utf-8",
         })
       );
-      notesListData.push({
-        noteTitle: noteConfig.title,
-        noteDirName,
-      } as NotesListItem);
+
+      notebooksListData.push({
+        notebookTitle: notebookConfig.title,
+        notebookDirName: notebookDirName,
+        notebookConfig,
+      } as NotebooksItem);
     }
 
     ctx.body = {
-      list: notesListData,
+      list: notebooksListData,
     };
   };
 
   /** get all posts of note */
-  getNotePosts = async (ctx: ParameterizedContext) => {
-    const notesPath = this.getNotesPath();
+  getNotebookPosts = async (ctx: ParameterizedContext) => {
+    const notebooksPath = this.getNotebooksPath();
     const params = ctx.params as {
-      notedirname: string;
+      notebookDirName: string;
     };
 
-    const noteDirPath = path.join(notesPath, params.notedirname);
-    const config = JSON.parse(
-      fs.readFileSync(path.join(noteDirPath, "config.json"), {
+    const notebookDirPath = path.join(notebooksPath, params.notebookDirName);
+    const notebookConfig = JSON.parse(
+      fs.readFileSync(path.join(notebookDirPath, "config.json"), {
         encoding: "utf-8",
       })
-    ) as NoteConfig;
+    ) as NotebookConfig;
 
     ctx.body = {
-      data: config,
+      data: notebookConfig,
     };
   };
 
@@ -70,7 +72,7 @@ export class NoteController {
     };
 
     const notePath = path.join(
-      this.getNotesPath(),
+      this.getNotebooksPath(),
       params.notedirname,
       decodeURIComponent(params.postlink)
     );
