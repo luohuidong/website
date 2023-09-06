@@ -2,6 +2,6 @@
 
 for project in blog server; do
   cd $project
-  npm build
+  npm run build
   cd ..
 done
