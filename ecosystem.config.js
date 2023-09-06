@@ -4,7 +4,7 @@ module.exports = {
       name: "3000-blog",
       exec_mode: "cluster",
       instances: "max",
-      script: "./website/blog/.output/server/index.mjs",
+      script: "./blog/.output/server/index.mjs",
       env: {
         NUXT_BLOG_SERVER: "https://api.luohuidong.cn/blog",
       },
@@ -13,7 +13,7 @@ module.exports = {
       name: "8000-blog-server",
       exec_mode: "cluster",
       instances: "max",
-      script: "./website/server/dist/index.js",
+      script: "./server/dist/index.js",
     },
   ],
 };
