@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import url from "node:url";
+import yaml from "js-yaml";
 import type { ParameterizedContext } from "koa";
 
 import type { NotebookConfig } from "./types";
@@ -27,12 +28,10 @@ export class NoteController {
 
     for (let i = 0; i < total; i++) {
       const notebookDirName = notebooks[i];
-      const notebookConfigFilePath = path.join(notebooksPath, notebookDirName, "config.json");
-      const notebookConfig: NotebookConfig = JSON.parse(
-        fs.readFileSync(notebookConfigFilePath, {
-          encoding: "utf-8",
-        })
-      );
+      const notebookConfigFilePath = path.join(notebooksPath, notebookDirName, "config.yaml");
+      const notebookConfig = yaml.load(
+        fs.readFileSync(notebookConfigFilePath, "utf-8")
+      ) as NotebookConfig;
 
       notebooksListData.push({
         notebookTitle: notebookConfig.title,
@@ -54,8 +53,8 @@ export class NoteController {
     };
 
     const notebookDirPath = path.join(notebooksPath, params.notebookDirName);
-    const notebookConfig = JSON.parse(
-      fs.readFileSync(path.join(notebookDirPath, "config.json"), {
+    const notebookConfig = yaml.load(
+      fs.readFileSync(path.join(notebookDirPath, "config.yaml"), {
         encoding: "utf-8",
       })
     ) as NotebookConfig;
