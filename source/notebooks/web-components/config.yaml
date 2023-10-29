@@ -1,0 +1,6 @@
+title: DOM 与 Web Components
+sidebar:
+  - text: Web Components
+    items:
+      - { text: Custom element, link: ./custom-element.md }
+      - { text: Shadow DOM, link: ./shadow-dom.md }
