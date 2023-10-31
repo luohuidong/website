@@ -3,7 +3,9 @@ title: Shadow DOM
 date: 2023-10-29
 ---
 
-Shadow DOM 可以将一个 DOM 树绑定到一个元素上，同时 shadow DOM 相对于外部不可见。
+custom element 比较重要的一点是可重用的功能的封装，为了让 custom element 的功能符合预期、不受页面的代码影响，因此需要借助 shadow DOM。Shadow DOM 可以将一个 DOM tree 绑定到一个元素上，这个 DOM tree 对于页面正在运行的 JavaScript 和 CSS 是不可见的。
+
+## 相关概念
 
 ![shadow dom](https://cdn.luohuidong.cn/clipboard_20231029_125707.png)
 
