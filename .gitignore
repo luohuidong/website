@@ -1,5 +1,9 @@
 node_modules
-
-# npm/pnpm lock file 
-pnpm-lock.yaml
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
 package-lock.json

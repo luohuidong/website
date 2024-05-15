@@ -1,8 +1,7 @@
 <script setup lang="ts">
 defineProps<{
-  title: string;
-  date: string;
-  content: string;
+  title?: string;
+  date?: string;
 }>();
 </script>
 
@@ -17,7 +16,7 @@ defineProps<{
     </div>
 
     <div :class="$style.postArea">
-      <div v-html="content"></div>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -62,12 +61,14 @@ defineProps<{
   }
 
   > div > pre {
-    margin-bottom: 30px;
+    background-color: rgb(248, 250, 252);
+    border: 1px solid rgb(226, 232, 240);
+    border-radius: 6px;
+    margin: 24px 0;
+    padding: 12px 16px;
 
     > code {
-      display: flex;
-
-      pre[class*="shiki"] {
+      pre {
         flex: 1;
         padding: 20px;
         border-radius: 5px;
@@ -78,6 +79,16 @@ defineProps<{
   a {
     color: #10b981;
     font-weight: 500;
+  }
+
+  h1 > a,
+  h2 > a,
+  h3 > a,
+  h4 > a,
+  h5 > a,
+  h6 > a {
+    color: #404040;
+    font-weight: 600;
   }
 
   ul,

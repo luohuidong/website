@@ -2,8 +2,8 @@
 
 git pull
 
-sh script-deps-install.sh
-sh script-project-build.sh
+npm install
+npm run build 
 
 pm2 stop all
 pm2 start
