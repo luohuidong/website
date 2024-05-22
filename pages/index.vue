@@ -1,10 +1,11 @@
 <script setup lang="ts">
+useHead({
+  title: "首页",
+});
 const blogQuery = queryContent("blog");
 const { data: navigation } = await useAsyncData("navigation", () =>
   fetchContentNavigation(blogQuery),
 );
-
-console.log("navigation", navigation);
 </script>
 
 <template>
