@@ -20,6 +20,7 @@
     "tailwindcss": "^3.3.5"
   },
   "dependencies": {
+    "dayjs": "^1.11.11",
     "gray-matter": "^4.0.3"
   }
 }
