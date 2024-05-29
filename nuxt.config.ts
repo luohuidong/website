@@ -21,5 +21,12 @@ export default defineNuxtConfig({
         sepia: "monokai",
       },
     },
+    markdown: {
+      // remarkPlugins: [],
+      rehypePlugins: {
+        "remark-math": {},
+        "rehype-katex": {},
+      },
+    },
   },
 });

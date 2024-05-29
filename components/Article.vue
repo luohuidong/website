@@ -129,3 +129,14 @@ defineProps<{
   }
 }
 </style>
+
+<style>
+.katex-display {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.katex-html {
+  display: none;
+}
+</style>
