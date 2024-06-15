@@ -2,7 +2,11 @@ module.exports = {
   apps: [
     {
       name: "3000-blog",
-      script: ".output/server/index.mjs",
+      script: "serve",
+      env: {
+        PM2_SERVE_PATH: "./dist",
+        PM2_SERVE_PORT: 3000,
+      },
     },
   ],
 };
