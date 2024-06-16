@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import type { TocLink } from "@nuxt/content/types";
 
-const props = defineProps<{
+defineProps<{
   data?: TocLink[];
 }>();
-console.log("data", props.data);
 </script>
 
 <template>
